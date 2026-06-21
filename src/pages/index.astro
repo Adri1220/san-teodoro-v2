@@ -1,17 +1,23 @@
 ---
-
+import Layout from './layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Archivo San Teodoro | Inicio">
+   <section class="hero" id="inicio">
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+         <span class="hero__label">REPOSITORIO DE ARTE FUNERARIO</span>
+         <h1 class="hero__title">Preservando el Arte de Piura</h1>
+         <p class="hero__text">
+            Un museo a cielo abierto. Este archivo preserva el valor
+            histórico y arquitectónico de los nichos y esculturas del
+            Cementerio San Teodoro mediante digitalización por
+            fotogrametría.
+         </p>
+         <div class="hero__actions">
+            <a href="/catalogo" class="btn btn--primary">Ver Catálogo 3D</a>
+            <a href="/nosotros" class="btn btn--secondary">Sobre el Proyecto</a>
+         </div>
+      </div>
+   </section>
+</Layout>

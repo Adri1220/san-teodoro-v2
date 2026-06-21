@@ -1,0 +1,1217 @@
+/* ==========================================================================
+   1. TOKENS DE DISEÑO (Extraídos de tu DESIGN.md)
+   ========================================================================== */
+:root {
+   /* Paleta de Colores */
+   --color-background: #fcf9f8;
+   --color-text-main: #1c1b1b;
+   --color-text-muted: #4f4535;
+   --color-primary-gold: #785600; /* Dorado Antiguo (Para fondo claro) */
+   --color-gold-light: #e5b95c; /* NUEVO: Dorado Brillante (Para fondo oscuro) */
+   --color-border-marble: #e5e2e1;
+
+   /* Tipografías */
+   --font-serif: "EB Garamond", serif; /* Para Títulos */
+   --font-sans: "Public Sans", sans-serif; /* Para Textos y Menús */
+}
+
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+html,
+body {
+   min-height: 100vh;
+   background-color: var(--color-background); /* Aplicamos el tono Crema */
+   color: var(--color-text-main);
+   scroll-behavior: smooth;
+}
+
+/* ==========================================================================
+   2. EL GRID GLOBAL (El cascarón de Dalto)
+   ========================================================================== */
+.grid-container {
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-rows: auto 1fr auto;
+   min-height: 100vh;
+   grid-template-areas:
+      "header"
+      "main"
+      "footer";
+}
+
+/* ==========================================================================
+   3. ESTILOS DEL HEADER REAL
+   ========================================================================== */
+.header {
+   grid-area: header;
+
+   /* Efecto Pergamino/Glassmorphism pedido en tu DESIGN.md */
+   background-color: rgba(252, 249, 248, 0.9);
+   backdrop-filter: blur(20px);
+   border-bottom: 1px solid var(--color-border-marble);
+
+   /* Lo mantenemos pegado arriba al hacer scroll */
+   position: fixed;
+   top: 0;
+   z-index: 1000;
+   width: 100%;
+   left: 0;
+
+   /* FLEXBOX: Distribuye Logo(Izq), Menú(Centro) e Ícono(Der) */
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   /* Espaciado interno según tu regla de "Aire" (Whitespace) */
+   padding: 24px 64px;
+
+   transition:
+      background-color 0.3s ease,
+      padding 0.3s ease,
+      box-shadow 0.3s ease;
+}
+
+/* Esta clase se agregará dinámicamente con JavaScript */
+.header--scrolled {
+   background-color: rgba(
+      252,
+      249,
+      248,
+      0.98
+   ); /* Casi sólido para que no se mezcle con el texto al bajar */
+   padding: 16px 64px; /* Lo hacemos ligeramente más delgado */
+   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08); /* Le damos una sombra elegante */
+}
+
+/* El Logo a la izquierda */
+.header__logo {
+   font-family: var(--font-serif);
+   font-size: 28px;
+   color: var(--color-primary-gold);
+   width: 160px;
+}
+
+.header__icon {
+   width: 160px;
+}
+
+/* El Menú central */
+.nav__list {
+   display: flex;
+   gap: 40px; /* Separación amplia y elegante entre enlaces */
+   list-style: none;
+}
+
+.nav__link {
+   font-family: var(--font-sans);
+   font-size: 14px;
+   font-weight: 600;
+   color: var(--color-text-muted);
+   text-decoration: none;
+   letter-spacing: 0.05em;
+   padding-bottom: 4px;
+   transition: color 0.3s ease;
+}
+
+.nav__link:hover {
+   color: var(--color-primary-gold);
+}
+
+/* El estilo de la página activa ("Inicio") con la línea dorada abajo */
+.nav__link--active {
+   color: var(--color-primary-gold);
+   border-bottom: 1px solid var(--color-primary-gold);
+}
+
+/* El ícono a la derecha */
+.header__icon svg {
+   color: var(--color-primary-gold);
+   cursor: pointer;
+}
+
+/* ==========================================================================
+   4. HERO SECTION (Portada Principal)
+   ========================================================================== */
+.hero {
+   position: relative; /* Necesario para posicionar el overlay (capa oscura) */
+   min-height: 85vh;
+
+   /* Imagen de fondo temporal (luego la cambias por tu foto local) */
+   background-image: url("../img/fondo-cementerio.png");
+   background-size: cover;
+   background-position: center;
+
+   /* FLEXBOX: Centra todo el bloque de texto */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+
+   /* Quitamos cualquier borde o padding residual del contenedor grid anterior */
+   margin: 0;
+}
+
+/* Capa de degradado (Gradient) para que el texto resalte y la imagen se funda con el fondo Crema abajo */
+.hero__overlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(
+      to bottom,
+      rgba(28, 27, 27, 0.85) 10%,
+      /* Más oscuro arriba para que el texto blanco y dorado explote */
+      rgba(28, 27, 27, 0.5) 45%,
+      /* Empujamos el degradado más abajo para mostrar más foto */
+      rgba(252, 249, 248, 0) 85%,
+      var(--color-background) 100%
+   );
+   z-index: 1;
+}
+
+/* Contenedor del texto */
+.hero__content {
+   position: relative;
+   z-index: 2; /* Lo pone por encima de la capa oscura */
+   max-width: 800px;
+   padding: 0 20px;
+   color: var(--color-background); /* Texto claro */
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 16px; /* Espaciado entre elementos */
+}
+
+/* Tipografía de la etiqueta pequeña */
+.hero__label {
+   font-family: var(--font-sans);
+   font-size: 14px;
+   font-weight: 600;
+   letter-spacing: 0.1em;
+   color: var(--color-gold-light); /* Aplicamos el dorado brillante aquí */
+}
+
+/* Tipografía del título principal */
+.hero__title {
+   font-family: var(--font-serif);
+   font-size: 47px;
+   font-weight: 500;
+   font-style: italic; /* Le da el toque elegante de tu captura */
+   line-height: 1.1;
+   margin-bottom: 8px;
+}
+
+/* Tipografía del párrafo */
+.hero__text {
+   font-family: var(--font-sans);
+   font-size: 18px;
+   line-height: 1.6;
+   max-width: 750px;
+   margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   5. BOTONES (Según DESIGN.md: 0px radius, estilo solemne)
+   ========================================================================== */
+.hero__actions {
+   display: flex;
+   gap: 16px; /* Separación entre los dos botones */
+}
+
+.btn {
+   font-family: var(--font-sans);
+   font-size: 14px;
+   font-weight: 600;
+   text-decoration: none;
+   padding: 14px 32px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   border-radius: 0; /* Clave de tu diseño: bordes completamente rectos */
+}
+
+/* Botón Principal (Fondo dorado) */
+.btn--primary {
+   background-color: var(--color-primary-gold);
+   color: var(--color-background);
+   border: 1px solid var(--color-primary-gold);
+}
+
+.btn--primary:hover,
+.btn--primary:focus {
+   background-color: #614600;
+   border-color: #614600;
+   outline: 2px solid var(--color-primary-gold); /* Ayuda visual para el teclado */
+   outline-offset: 2px;
+}
+
+/* Botón Secundario (Fondo transparente / "Ghost") */
+.btn--secondary {
+   background-color: rgba(
+      255,
+      255,
+      255,
+      0.1
+   ); /* Ligeramente blanco transparente */
+   color: var(--color-background);
+   backdrop-filter: blur(5px);
+   border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn--secondary:hover {
+   background-color: rgba(255, 255, 255, 0.2);
+   border-color: var(--color-background);
+}
+
+/* ==========================================================================
+   PAGINACIÓN DEL CATÁLOGO
+   ========================================================================== */
+.catalog__pagination {
+   display: flex;
+   justify-content: center;
+   gap: 8px;
+   margin-top: 40px; /* Separación entre las tarjetas y los botones */
+   width: 100%;
+}
+
+.page-btn {
+   width: 40px;
+   height: 40px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: transparent;
+   border: 1px solid var(--color-border-marble);
+   color: var(--color-text-muted);
+   font-family: var(--font-sans);
+   font-size: 14px;
+   font-weight: 600;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   border-radius: 0; /* Bordes rectos consistentes con tu diseño */
+}
+
+.page-btn:hover {
+   border-color: var(--color-primary-gold);
+   color: var(--color-primary-gold);
+}
+
+.page-btn--active {
+   background-color: var(--color-primary-gold);
+   border-color: var(--color-primary-gold);
+   color: #ffffff;
+}
+
+/* ==========================================================================
+   6. ABOUT SECTION (Un Museo a Cielo Abierto)
+   ========================================================================== */
+.about {
+   /* Le damos bastante "aire" (espacio) arriba y abajo, según pide tu DESIGN.md */
+   padding: 85px 20px;
+   background-color: var(--color-background);
+
+   /* Flexbox aquí nos sirve para centrar el contenedor principal en la pantalla */
+   display: flex;
+   justify-content: center;
+}
+
+.about__container {
+   max-width: 1000px;
+   width: 100%;
+
+   /* FLEXBOX CARDINAL: Pone la columna de imagen y la de texto lado a lado */
+   display: flex;
+   align-items: center; /* Las centra verticalmente entre sí */
+   gap: 80px; /* Una separación elegante entre la foto y el texto */
+}
+
+/* --- COLUMNA IZQUIERDA (Imagen) --- */
+.about__image-wrapper {
+   position: relative;
+   flex: 0 0 40%; /* Le decimos que ocupe exactamente el 40% del ancho disponible */
+}
+
+/* La foto real de la sección Historia */
+.about__img {
+   position: relative;
+   z-index: 2; /* Para que quede por encima del marco dorado */
+   width: 100%;
+   height: 500px;
+   object-fit: cover; /* Para que la foto no se deforme */
+
+   /* El efecto visual de marco de fotografía antigua */
+   border: 10px solid var(--color-background);
+   outline: 1px solid var(--color-border-marble);
+}
+
+/* El marco dorado decorativo desfasado */
+.about__image-frame {
+   position: absolute;
+   top: 20px; /* Lo empuja hacia abajo */
+   left: 20px; /* Lo empuja hacia la derecha */
+   width: 100%;
+   height: 100%;
+   border: 1px solid var(--color-primary-gold);
+   z-index: 1; /* Se queda por debajo de la foto */
+}
+
+/* --- COLUMNA DERECHA (Texto) --- */
+.about__content {
+   flex: 1; /* Le decimos que ocupe el resto del espacio disponible (el 60% restante) */
+   display: flex;
+   flex-direction: column;
+   gap: 24px; /* Separación uniforme entre título, párrafos y estadísticas */
+}
+
+.about__title {
+   font-family: var(--font-serif);
+   font-size: 32px;
+   font-weight: 500;
+   color: var(--color-text-main);
+}
+
+.about__text {
+   font-family: var(--font-sans);
+   font-size: 16px;
+   color: var(--color-text-muted);
+   line-height: 1.8;
+}
+
+/* --- ESTADÍSTICAS --- */
+.about__stats {
+   display: flex;
+   gap: 60px; /* Separa los dos bloques de números */
+   margin-top: 20px;
+   border-left: 2px solid var(--color-primary-gold); /* La línea dorada vertical a la izquierda */
+   padding-left: 24px;
+}
+
+.stat {
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+}
+
+/* .stat__number {
+   font-family: var(--font-serif);
+   font-size: 28px;
+   color: var(--color-primary-gold);
+} */
+
+.stat__label {
+   font-family: var(--font-sans);
+   font-size: 14px;
+   text-transform: uppercase;
+   letter-spacing: 0.05em;
+   font-weight: 600;
+   color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   7. CATALOG SECTION (Personajes Ilustres)
+   ========================================================================== */
+.catalog {
+   /* stack-lg: Espaciado generoso entre secciones */
+   padding: 80px 20px;
+   background-color: var(--color-background);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 40px; /* Distancia entre la cabecera y la cuadrícula de tarjetas */
+}
+
+/* ==========================================================================
+   BUSCADOR DEL CATÁLOGO
+   ========================================================================== */
+.catalog__search {
+   width: 100%;
+   max-width: 500px;
+   margin-bottom: 24px;
+}
+
+.search-input {
+   width: 100%;
+   padding: 14px 20px;
+   font-family: var(--font-sans);
+   font-size: 15px;
+   color: var(--color-text-main);
+   background-color: transparent;
+   border: 1px solid var(--color-border-marble);
+   border-radius: 0;
+   outline: none;
+   transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+   border-color: var(--color-primary-gold);
+}
+
+.search-input::placeholder {
+   color: #999;
+}
+
+/* ==========================================================================
+   PERSONALIZACIÓN DE LA "X" DEL BUSCADOR (Webkit)
+   ========================================================================== */
+.search-input::-webkit-search-cancel-button {
+   -webkit-appearance: none;
+   appearance: none;
+   width: 14px;
+   height: 14px;
+   /* El color base de la X será tu gris oscuro/marrón */
+   background-color: var(--color-text-muted);
+   cursor: pointer;
+
+   /* Magia CSS: Usamos una máscara SVG para dibujar la X y pintarla con nuestro background-color */
+   -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'></line><line x1='6' y1='6' x2='18' y2='18'></line></svg>");
+   mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'></line><line x1='6' y1='6' x2='18' y2='18'></line></svg>");
+
+   -webkit-mask-size: cover;
+   mask-size: cover;
+   transition: background-color 0.3s ease;
+}
+
+/* Efecto hover: La X se vuelve dorada cuando el usuario le pasa el ratón */
+.search-input::-webkit-search-cancel-button:hover {
+   background-color: var(--color-primary-gold);
+}
+
+.catalog__filters {
+   display: flex;
+   justify-content: center;
+   gap: 15px;
+   margin-bottom: 10px;
+}
+
+.filter-btn {
+   padding: 8px 20px;
+   background-color: transparent;
+   border: 1px solid var(--color-primary-gold);
+   color: var(--color-text-main);
+   font-family: var(--font-sans);
+   font-size: 14px;
+   font-weight: 600;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn--active {
+   background-color: var(--color-primary-gold);
+   color: #fff;
+}
+
+/* Clase para ocultar tarjetas con JS */
+.card.hidden {
+   display: none;
+}
+
+.catalog__header {
+   text-align: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 12px;
+}
+
+.catalog__subtitle {
+   font-family: var(--font-sans);
+   font-size: 12px;
+   font-weight: 600;
+   letter-spacing: 0.1em;
+   color: var(--color-text-muted);
+}
+
+.catalog__title {
+   font-family: var(--font-serif);
+   font-size: 36px;
+   font-weight: 500;
+   color: var(--color-text-main);
+}
+
+/* La línea dorada decorativa debajo del título */
+.catalog__divider {
+   width: 60px;
+   height: 1px;
+   background-color: var(--color-primary-gold);
+}
+
+/* --- LA CUADRÍCULA (CSS Grid) --- */
+.catalog__grid {
+   display: grid;
+   /* Divide el espacio en 3 columnas exactamente iguales (1fr cada una) */
+   grid-template-columns: repeat(3, 1fr);
+   gap: 32px; /* Gutter exacto de tu DESIGN.md */
+   max-width: 1000px; /* Ancho máximo permitido para el contenedor */
+   width: 100%;
+}
+
+/* --- LA TARJETA --- */
+.card {
+   background-color: #f6f3f2; /* Un tono sutil para separar la tarjeta del fondo */
+   border: 1px solid var(--color-border-marble); /* Línea fina Gris Mármol */
+   border-radius: 0; /* Esquinas completamente rectas (0px) */
+
+   /* FLEXBOX: Organiza el contenido interno en una columna vertical */
+   display: flex;
+   flex-direction: column;
+   transition: border-color 0.3s ease; /* Transición suave para el hover */
+}
+
+/* Efecto interactivo del manual de estilos */
+.card:hover {
+   border-color: var(--color-primary-gold); /* Cambia a dorado antiguo */
+}
+
+/* Contenedor de la foto dentro de la tarjeta */
+.card__image-wrapper {
+   width: 100%;
+   padding: 10px 10px 0 10px; /* "Aire" interno para que la imagen flote */
+}
+
+/* Imagen real de la tarjeta */
+.card__img {
+   width: 100%;
+   height: 300px; /* La misma altura que le dimos al placeholder gris */
+   object-fit: cover; /* MAGIA: Recorta la imagen automáticamente para llenar la caja sin deformarse */
+   display: block; /* Evita pequeños márgenes invisibles debajo de la imagen */
+}
+
+/* Bloque de textos e información */
+.card__content {
+   padding: 24px;
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+   flex-grow: 1; /* Hace que el contenido se estire para que todas las tarjetas midan lo mismo */
+}
+
+/* Jerarquía Académica: Categoría en mayúsculas y dorado */
+.card__category {
+   font-family: var(--font-sans);
+   font-size: 12px;
+   font-weight: 600;
+   letter-spacing: 0.05em;
+   color: var(--color-primary-gold);
+}
+
+.card__name {
+   font-family: var(--font-serif);
+   font-size: 20px;
+   font-weight: 500;
+   color: var(--color-text-main);
+}
+
+.card__description {
+   font-family: var(--font-sans);
+   font-size: 15px;
+   color: var(--color-text-muted);
+   line-height: 1.6;
+   margin-bottom: 8px;
+}
+
+/* Enlace "Ver Biografía" */
+.card__link {
+   font-family: var(--font-sans);
+   font-size: 14px;
+   font-weight: 600;
+   color: var(--color-primary-gold);
+   text-decoration: none;
+
+   /* TRUCO FLEXBOX: Empuja automáticamente este enlace al fondo de la tarjeta, 
+       haciendo que todos los enlaces queden perfectamente alineados abajo */
+   margin-top: auto;
+
+   display: inline-flex;
+   align-items: center;
+   transition: color 0.3s ease;
+}
+
+.card__link:hover {
+   color: var(--color-text-main);
+}
+
+/* ==========================================================================
+   8. CTA SECTION (Únase a la Preservación)
+   ========================================================================== */
+.cta {
+   background-color: #ffffff; /* Blanco puro para crear una franja de contraste sutil */
+   padding: 75px 20px;
+   border-top: 1px solid var(--color-border-marble);
+   border-bottom: 1px solid var(--color-border-marble);
+
+   /* Flexbox para centrar el contenedor horizontalmente */
+   display: flex;
+   justify-content: center;
+}
+
+.cta__container {
+   max-width: 800px; /* Hacemos la caja angosta para que el texto salte a dos líneas elegantes */
+
+   /* FLEXBOX: Apila título, texto y enlace al centro */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+   gap: 24px;
+}
+
+.cta__title {
+   font-family: var(--font-serif);
+   font-size: 36px;
+   font-style: italic; /* El toque elegante del título */
+   font-weight: 500;
+   color: var(--color-text-main);
+}
+
+.cta__text {
+   font-family: var(--font-sans);
+   font-size: 15px;
+   color: var(--color-text-muted);
+   line-height: 1.6;
+}
+
+/* El botón de texto sin bordes, solo con la línea inferior */
+.cta__link {
+   font-family: var(--font-sans);
+   font-size: 13px;
+   font-weight: 600;
+   color: var(--color-primary-gold);
+   text-decoration: none;
+   text-transform: uppercase;
+   letter-spacing: 0.1em;
+
+   /* Creamos la línea inferior usando border, no underline, para mayor control */
+   border-bottom: 1.5px solid var(--color-primary-gold);
+   padding-bottom: 6px;
+   margin-top: 16px;
+   transition: all 0.3s ease;
+}
+
+.cta__link:hover {
+   color: var(--color-text-main);
+   border-color: var(--color-text-main);
+}
+
+/* ==========================================================================
+   9. FOOTER (Pie de página)
+   ========================================================================== */
+.footer {
+   grid-area: footer; /* Lo mantiene en su área del grid principal */
+   background-color: var(--color-background);
+   display: flex;
+   justify-content: center;
+   padding: 64px 20px 32px 20px;
+}
+
+.footer__container {
+   max-width: 1120px;
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 64px; /* Separación entre el bloque de arriba y los créditos de abajo */
+}
+
+/* --- BLOQUE SUPERIOR (Marca y Links) --- */
+.footer__top {
+   display: flex;
+   justify-content: space-between;
+   align-items: flex-start;
+}
+
+.footer__brand {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+   max-width: 400px;
+}
+
+.footer__logo {
+   font-family: var(--font-serif);
+   font-size: 20px;
+   color: var(--color-text-main);
+}
+
+.footer__text {
+   font-family: var(--font-sans);
+   font-size: 14px;
+   color: var(--color-text-muted);
+   line-height: 1.6;
+}
+
+/* --- COLUMNAS DE ENLACES --- */
+.footer__links-wrapper {
+   display: flex;
+   gap: 80px; /* Separación entre las dos columnas de links */
+}
+
+.footer__list {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+   padding: 0;
+   margin: 0;
+}
+
+.footer__link {
+   font-family: var(--font-sans);
+   font-size: 14px;
+   font-weight: 600;
+   color: var(--color-text-main);
+   text-decoration: none;
+   transition: color 0.3s ease;
+}
+
+.footer__link:hover {
+   color: var(--color-primary-gold);
+}
+
+/* --- BLOQUE INFERIOR (Legales y Copyright) --- */
+.footer__bottom {
+   display: flex;
+   justify-content: center;
+   border-top: 1px solid var(--color-border-marble); /* Línea gris fina */
+   padding-top: 24px;
+   font-family: var(--font-sans);
+   font-size: 12px;
+   color: var(--color-text-muted);
+}
+
+.footer__legal {
+   display: flex;
+   gap: 24px;
+}
+
+.footer__legal a {
+   color: inherit;
+   text-decoration: none;
+   transition: color 0.3s ease;
+}
+
+.footer__legal a:hover {
+   color: var(--color-primary-gold);
+}
+
+/* ==========================================================================
+   10. ARTWORK SECTION (Página interna de la obra)
+   ========================================================================== */
+.artwork {
+   padding: 60px 20px 100px 20px;
+   display: flex;
+   justify-content: center;
+}
+
+.artwork__container {
+   max-width: 1200px;
+   width: 100%;
+}
+
+/* El enlace superior para regresar */
+.artwork__back {
+   display: inline-block;
+   font-family: var(--font-sans);
+   font-size: 12px;
+   font-weight: 600;
+   color: var(--color-text-muted);
+   text-decoration: none;
+   letter-spacing: 0.1em;
+   margin-bottom: 40px;
+   transition: color 0.3s ease;
+}
+
+.artwork__back:hover {
+   color: var(--color-primary-gold);
+}
+
+/* El Grid a 2 columnas */
+.artwork__grid {
+   display: grid;
+   /* La columna izquierda es ligeramente más ancha que la derecha */
+   grid-template-columns: 1.2fr 1fr;
+   gap: 60px;
+   align-items: start;
+}
+
+/* --- COLUMNA IZQUIERDA (Visor 3D) --- */
+.artwork__media {
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+}
+
+.artwork__media iframe {
+   background-color: #e5e2e1;
+   border: 1px solid var(--color-border-marble);
+}
+
+.artwork__media-caption {
+   font-family: var(--font-sans);
+   font-size: 11px;
+   color: var(--color-text-muted);
+   letter-spacing: 0.05em;
+   text-transform: uppercase;
+}
+
+/* --- COLUMNA DERECHA (Textos y Datos) --- */
+.artwork__details {
+   display: flex;
+   flex-direction: column;
+}
+
+.artwork__category {
+   font-family: var(--font-sans);
+   font-size: 12px;
+   font-weight: 600;
+   color: var(--color-primary-gold);
+   letter-spacing: 0.1em;
+   margin-bottom: 8px;
+}
+
+.artwork__title {
+   font-family: var(--font-serif);
+   font-size: 40px;
+   font-weight: 500;
+   color: var(--color-text-main);
+   line-height: 1.1;
+   margin-bottom: 24px;
+}
+
+/* Etiqueta de Conservación */
+.artwork__status {
+   display: inline-flex;
+   align-items: center;
+   gap: 8px;
+   background-color: var(--color-border-marble);
+   padding: 8px 12px;
+   font-family: var(--font-sans);
+   font-size: 11px;
+   font-weight: 600;
+   color: var(--color-text-muted);
+   margin-bottom: 40px;
+   align-self: flex-start;
+}
+
+.status-dot {
+   width: 8px;
+   height: 8px;
+   background-color: var(--color-primary-gold);
+   border-radius: 50%;
+}
+
+/* Evolución de los Metadatos a estilo ARCA */
+.artwork__meta {
+   display: grid;
+   grid-template-columns: 1fr 1fr; /* Dos columnas de datos */
+   gap: 0 40px; /* Separación horizontal */
+   border-top: 1px solid var(--color-border-marble);
+   margin-bottom: 40px;
+   padding: 0;
+}
+
+.meta-item {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+   padding: 20px 0;
+   border-bottom: 1px solid var(--color-border-marble);
+}
+
+.meta-label {
+   font-family: var(--font-sans);
+   font-size: 12px;
+   font-weight: 600;
+   color: var(--color-text-main); /* Más oscuro como en ARCA */
+}
+
+.meta-value {
+   font-family: var(--font-sans);
+   font-size: 14px;
+   color: var(--color-primary-gold); /* Datos en color para resaltar */
+}
+
+/* Reseña Histórica */
+.artwork__description h3 {
+   font-family: var(--font-serif);
+   font-size: 24px;
+   font-weight: 500;
+   color: var(--color-text-main);
+   margin-bottom: 16px;
+}
+
+.artwork__description p {
+   font-family: var(--font-sans);
+   font-size: 15px;
+   color: var(--color-text-muted);
+   line-height: 1.8;
+}
+
+/* ==========================================================================
+   12. LOCATION SECTION (Google Maps Full-Width)
+   ========================================================================== */
+.location {
+   padding-top: 80px; /* Espacio generoso arriba */
+   background-color: #ffffff; /* Fondo blanco de contraste */
+   border-top: 1px solid var(--color-border-marble); /* Línea divisoria */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 50px; /* Distancia entre el texto de arriba y el mapa */
+}
+
+/* Cabecera centrada */
+.location__header {
+   max-width: 800px; /* Limitamos el ancho del texto para que no se estire feo */
+   width: 100%;
+   text-align: center;
+   padding: 0 20px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 16px;
+}
+
+/* Contenedor del mapa que rompe los márgenes y va de borde a borde */
+.location__map-full {
+   width: 100%;
+   line-height: 0; /* Elimina un pequeño espacio en blanco residual debajo del iframe */
+}
+
+.location__map-full iframe {
+   width: 100%;
+   border-top: 1px solid var(--color-border-marble);
+   border-bottom: 1px solid var(--color-border-marble);
+   box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.02); /* Sombra interna sutil */
+}
+
+/* ==========================================================================
+   14. NARRATIVE SECTION (Plantilla para Nichos - Estilo Revista)
+   ========================================================================== */
+.narrative {
+   padding: 120px 20px 100px 20px;
+   display: flex;
+   justify-content: center;
+}
+
+.narrative__container {
+   max-width: 1400px; /* Un poco más ancho para dar respiro a la imagen grande */
+   width: 100%;
+}
+
+.narrative__grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr; /* Mitad imagen, mitad texto */
+   gap: 80px;
+   align-items: start; /* Vital para que el sticky funcione */
+}
+
+/* La magia para que la imagen acompañe la lectura */
+.narrative__media {
+   position: sticky;
+   top: 120px; /* Se queda pegada debajo del Header */
+}
+
+.narrative__img {
+   width: 100%;
+   height: auto;
+   max-height: 75vh;
+   object-fit: cover;
+   border: 1px solid var(--color-border-marble);
+}
+
+.narrative__title {
+   font-family: var(--font-serif);
+   font-size: 48px;
+   color: var(--color-text-main);
+   line-height: 1.1;
+   margin-bottom: 8px;
+}
+
+.narrative__subtitle {
+   font-family: var(--font-sans);
+   font-size: 24px;
+   color: var(--color-text-muted);
+   margin-bottom: 32px;
+   display: block;
+}
+
+.narrative__tags {
+   display: flex;
+   gap: 12px;
+   margin-bottom: 24px;
+}
+
+.tag {
+   padding: 6px 16px;
+   border: 1px solid var(--color-text-main);
+   font-family: var(--font-sans);
+   font-size: 13px;
+   font-weight: 600;
+}
+
+.narrative__brief {
+   font-family: var(--font-sans);
+   font-size: 14px;
+   line-height: 1.6;
+   margin-bottom: 40px;
+   padding-bottom: 24px;
+   border-bottom: 1px solid var(--color-border-marble);
+}
+
+.narrative__story p {
+   font-family: var(--font-serif);
+   font-size: 18px; /* Letra un poco más grande para lectura prolongada */
+   line-height: 1.8;
+   color: var(--color-text-main);
+   margin-bottom: 24px;
+}
+
+/* Letra capital (Opcional, como en el diseño de HA!) */
+.dropcap {
+   float: left;
+   font-size: 64px;
+   line-height: 48px;
+   padding-top: 4px;
+   padding-right: 8px;
+   color: var(--color-primary-gold);
+}
+
+/* ==========================================================================
+   15. DISEÑO RESPONSIVO (Tablets y Celulares)
+   ========================================================================== */
+
+/* --- TABLETS (Pantallas medianas, menos de 992px) --- */
+@media (max-width: 992px) {
+   /* El catálogo pasa de 3 a 2 columnas */
+   .catalog__grid {
+      grid-template-columns: repeat(2, 1fr);
+   }
+
+   /* La sección "Sobre el Proyecto" se apila */
+   .about__container {
+      flex-direction: column;
+      text-align: center;
+      gap: 40px;
+   }
+
+   .about__image-wrapper {
+      width: 100%;
+      max-width: 600px; /* Evita que la foto se vea gigantesca */
+   }
+
+   .about__stats {
+      justify-content: center;
+      border-left: none;
+      border-top: 2px solid var(--color-primary-gold);
+      padding-left: 0;
+      padding-top: 24px;
+   }
+
+   /* Las páginas internas (Obras y Nichos) pasan a 1 sola columna */
+   .artwork__grid,
+   .narrative__grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+   }
+
+   /* La foto en el relato de Nichos deja de estar pegada (sticky) y fluye normal */
+   .narrative__media {
+      position: relative;
+      top: 0;
+   }
+}
+
+/* --- CELULARES (Pantallas pequeñas, menos de 768px) --- */
+@media (max-width: 768px) {
+   /* 1. HEADER Y NAVEGACIÓN */
+   .header {
+      padding: 16px 20px;
+      flex-direction: column; /* Apila Logo, Menú e Icono */
+      gap: 16px;
+   }
+
+   .header--scrolled {
+      padding: 12px 20px;
+   }
+
+   .header__logo,
+   .header__icon {
+      width: auto;
+      text-align: center;
+   }
+
+   .nav__list {
+      gap: 16px;
+      flex-wrap: wrap; /* Si no caben, bajan de línea */
+      justify-content: center;
+   }
+
+   /* Ajuste para que el contenido no quede oculto detrás del header apilado */
+   .hero {
+      min-height: 90vh;
+      padding-top: 120px;
+   }
+
+   /* 2. TIPOGRAFÍAS Y ESPACIADOS (Escalado descendente) */
+   .hero__title {
+      font-size: 36px;
+   }
+   .about__title {
+      font-size: 28px;
+   }
+   .catalog__title {
+      font-size: 30px;
+   }
+   .narrative__title {
+      font-size: 36px;
+   }
+   .artwork__title {
+      font-size: 32px;
+   }
+
+   /* 3. CATÁLOGO */
+   /* Pasa a 1 sola columna en celulares */
+   .catalog__grid {
+      grid-template-columns: 1fr;
+   }
+
+   /* Los botones de filtro se vuelven envolventes */
+   .catalog__filters {
+      flex-wrap: wrap;
+   }
+
+   /* 4. METADATOS DE LA OBRA (ARCA) */
+   /* La cuadrícula de datos (Año, Material, Autor) pasa a 1 columna */
+   .artwork__meta {
+      grid-template-columns: 1fr;
+   }
+
+   /* 5. FOOTER (Pie de página) */
+   .footer__top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 40px;
+   }
+
+   .footer__links-wrapper {
+      flex-direction: column;
+      gap: 32px;
+   }
+
+   .footer__list {
+      align-items: center;
+   }
+
+   .footer__legal {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+   }
+}

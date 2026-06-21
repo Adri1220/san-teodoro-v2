@@ -1,0 +1,27 @@
+---
+import Layout from './layouts/Layout.astro';
+---
+
+<Layout title="Archivo San Teodoro | Catálogo Completo">
+   <section class="catalog" id="catalogo" style="padding-top: 150px; min-height: 80vh;">
+      
+      <div class="catalog__header" style="margin-bottom: 24px;">
+         <span class="catalog__subtitle">EXPLORA NUESTRO REPOSITORIO</span>
+         <h1 class="catalog__title">Catálogo 3D y Archivo</h1>
+         <div class="catalog__divider"></div>
+      </div>
+
+      <div class="catalog__search">
+         <input type="search" id="searchInput" class="search-input" placeholder="Buscar por obra, autor, material o ubicación..." autocomplete="off" aria-label="Buscar en el catálogo" />
+      </div>
+
+      <div class="catalog__filters">
+         <button class="filter-btn filter-btn--active" data-filter="todos">Todos</button>
+         <button class="filter-btn" data-filter="escultura">Esculturas</button>
+         <button class="filter-btn" data-filter="nicho">Nichos</button>
+      </div>
+
+      <div class="catalog__grid"></div>
+      
+   </section>
+</Layout>
