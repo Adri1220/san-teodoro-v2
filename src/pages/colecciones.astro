@@ -1,0 +1,168 @@
+---
+import Layout from './layouts/Layout.astro';
+---
+
+<Layout title="Archivo San Teodoro | Colecciones Temáticas">
+   <section class="collections-page" style="padding-top: 140px; padding-bottom: 80px; background-color: var(--color-background);">
+      <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+         
+         <div style="text-align: center; margin-bottom: 40px;">
+            <h1 style="font-family: var(--font-serif); font-size: 42px; font-weight: 500; color: var(--color-text-main);">Colecciones</h1>
+            <div style="width: 60px; height: 1px; background-color: var(--color-primary-gold); margin: 16px auto 0 auto;"></div>
+         </div>
+
+         <div class="bento-grid">
+            <a href="#catalogo-seccion" class="bento-item item-1">
+               <div class="bento-overlay"></div>
+               <img src="/img/estatua-2.jpg" alt="Mensajeros Celestiales" class="bento-bg" />
+               <div class="bento-content">
+                  <h2 class="bento-title">Mensajeros Celestiales y Virtudes</h2>
+                  <p class="bento-desc">Representaciones de ángeles, alegorías y figuras simbólicas del arte funerario piurano.</p>
+               </div>
+            </a>
+
+            <a href="#catalogo-seccion" class="bento-item item-2">
+               <div class="bento-overlay"></div>
+               <img src="/img/estatua 1.jpg" alt="Dolor Esculpido" class="bento-bg" />
+               <div class="bento-content">
+                  <h2 class="bento-title">Dolor Esculpido, Dolor Compartido</h2>
+                  <p class="bento-desc">Esculturas que capturan el duelo y la memoria.</p>
+               </div>
+            </a>
+
+            <a href="#catalogo-seccion" class="bento-item item-3">
+               <div class="bento-overlay"></div>
+               <img src="/img/estatua3.jpg" alt="De lo Simbólico al Retrato" class="bento-bg" />
+               <div class="bento-content">
+                  <h2 class="bento-title">De lo Simbólico al Retrato</h2>
+                  <p class="bento-desc">Obras que transitan entre la abstracción y el retrato.</p>
+               </div>
+            </a>
+
+            <a href="#catalogo-seccion" class="bento-item item-4">
+               <div class="bento-overlay"></div>
+               <img src="/img/fondo-cementerio.png" alt="La Naturaleza" class="bento-bg" />
+               <div class="bento-content">
+                  <h2 class="bento-title">La Naturaleza como Símbolo</h2>
+                  <p class="bento-desc">Motivos naturales en piedra y mármol.</p>
+               </div>
+            </a>
+
+            <a href="#catalogo-seccion" class="bento-item item-5">
+               <div class="bento-overlay"></div>
+               <img src="/img/nicho1.webp" alt="Efemérides" class="bento-bg" />
+               <div class="bento-content">
+                  <h2 class="bento-title">Efemérides</h2>
+                  <p class="bento-desc">Obras vinculadas a fechas y eventos de la historia local.</p>
+               </div>
+            </a>
+         </div>
+
+         <div id="catalogo-seccion" style="text-align: center; margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--color-border-marble);">
+            
+            <span style="font-family: var(--font-serif); font-size: 24px; font-style: italic; color: var(--color-text-muted); margin-bottom: 24px; display: block;">
+               ¿No sabes qué buscar?<br>Explora por temas nuestra selección de bienes artísticos
+            </span>
+
+            <div class="catalog__search" style="margin: 0 auto 24px auto; max-width: 500px;">
+               <input type="search" id="searchInput" class="search-input" placeholder="Buscar por obra, autor, material o ubicación..." autocomplete="off" aria-label="Buscar en el catálogo" />
+            </div>
+
+            <div class="catalog__filters" style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px;">
+               <button class="filter-btn filter-btn--active" data-filter="todos">Todos</button>
+               <button class="filter-btn" data-filter="escultura">Esculturas</button>
+               <button class="filter-btn" data-filter="sigloxix">S. XIX</button>
+               <button class="filter-btn" data-filter="lapidas">Lápidas</button>
+               <button class="filter-btn" data-filter="neoclasico">Neoclásico</button>
+            </div>
+
+            <div class="catalog__grid" style="text-align: left;"></div>
+         </div>
+
+         <div style="text-align: center; margin-top: 80px; padding: 40px; background-color: #f6f3f2; border: 1px solid var(--color-border-marble);">
+            <h3 style="font-family: var(--font-serif); font-size: 28px; color: var(--color-text-main); margin-bottom: 16px;">¿Te interesa lo que ves?</h3>
+            <p style="font-family: var(--font-sans); font-size: 15px; color: var(--color-text-muted); margin-bottom: 24px;">Conócelo en persona recorriendo los pasillos del camposanto.</p>
+            <a href="#" class="btn btn--primary">Agenda tu visita guiada</a>
+         </div>
+
+      </div>
+   </section>
+</Layout>
+
+<style>
+   .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 300px);
+      gap: 24px;
+   }
+
+   .bento-item {
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 32px;
+      text-decoration: none;
+      overflow: hidden;
+      border: 1px solid var(--color-border-marble);
+   }
+
+   .bento-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      z-index: 1;
+   }
+
+   .bento-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to top, rgba(28,27,27,0.85) 0%, rgba(28,27,27,0.1) 100%);
+      z-index: 2;
+   }
+
+   .bento-content {
+      position: relative;
+      z-index: 3;
+   }
+
+   .bento-title {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 8px;
+   }
+
+   .bento-desc {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: #e5e2e1;
+      line-height: 1.5;
+   }
+
+   .bento-item:hover .bento-bg {
+      transform: scale(1.05);
+   }
+
+   /* Posicionamiento Asimétrico */
+   .item-1 { grid-column: span 2; grid-row: span 2; } /* Ocupa mitad izquierda completa */
+   .item-2 { grid-column: span 1; grid-row: span 1; } /* Cuadrante superior central */
+   .item-3 { grid-column: span 1; grid-row: span 1; } /* Cuadrante superior derecho */
+   .item-4 { grid-column: 3 / 4; grid-row: 2 / 3; }  /* Cuadrante inferior central */
+   .item-5 { grid-column: 4 / 5; grid-row: 2 / 3; }  /* Cuadrante inferior derecho */
+
+   /* Responsive Design para el mosaico en celulares */
+   @media (max-width: 992px) {
+      .bento-grid {
+         grid-template-columns: 1fr;
+         grid-template-rows: auto;
+      }
+      .item-1, .item-2, .item-3, .item-4, .item-5 {
+         grid-column: span 1;
+         grid-row: span 1;
+         height: 250px;
+      }
+   }
+</style>

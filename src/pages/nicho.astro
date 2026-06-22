@@ -1,0 +1,69 @@
+---
+import Layout from './layouts/Layout.astro';
+---
+
+<Layout title="Archivo San Teodoro | Nicho Histórico">
+   <section class="narrative" style="padding-top: 150px;">
+      <div class="narrative__container">
+         <a href="/catalogo" class="artwork__back">&larr; VOLVER AL CATÁLOGO</a>
+
+         <div class="narrative__grid">
+            <div class="narrative__media">
+               <div id="narrative-img-container"></div>
+               
+               <div class="thumbnail-gallery" style="display: flex; gap: 8px; margin-top: 16px;">
+                  </div>
+            </div>
+
+            <div class="narrative__content">
+               <span class="artwork__category" id="narrative-category" style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--color-primary-gold); letter-spacing: 0.1em; margin-bottom: 8px; display: block;"></span>
+               <h1 class="narrative__title"></h1>
+               
+               <div class="artwork__status" style="display: inline-flex; align-items: center; gap: 8px; background-color: var(--color-border-marble); padding: 8px 12px; font-family: var(--font-sans); font-size: 11px; font-weight: 600; color: var(--color-text-muted); margin-bottom: 32px;"></div>
+
+               <ul class="artwork__meta" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px 40px; border-top: 1px solid var(--color-border-marble); padding-top: 24px; margin-bottom: 40px; list-style: none;">
+                  <li class="meta-item" style="display: flex; flex-direction: column; gap: 8px;">
+                     <span class="meta-label" style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--color-text-main);">AÑO</span>
+                     <span class="meta-value" id="meta-anio" style="font-family: var(--font-sans); font-size: 14px; color: var(--color-primary-gold);"></span>
+                  </li>
+                  <li class="meta-item" style="display: flex; flex-direction: column; gap: 8px;">
+                     <span class="meta-label" style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--color-text-main);">MATERIAL</span>
+                     <span class="meta-value" id="meta-material" style="font-family: var(--font-sans); font-size: 14px; color: var(--color-primary-gold);"></span>
+                  </li>
+                  <li class="meta-item" style="display: flex; flex-direction: column; gap: 8px;">
+                     <span class="meta-label" style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--color-text-main);">AUTOR</span>
+                     <span class="meta-value" id="meta-autor" style="font-family: var(--font-sans); font-size: 14px; color: var(--color-primary-gold);"></span>
+                  </li>
+                  <li class="meta-item" style="display: flex; flex-direction: column; gap: 8px;">
+                     <span class="meta-label" style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--color-text-main);">UBICACIÓN / SECTOR</span>
+                     <span class="meta-value" id="meta-ubicacion" style="font-family: var(--font-sans); font-size: 14px; color: var(--color-primary-gold);"></span>
+                  </li>
+                  <li class="meta-item" style="display: flex; flex-direction: column; gap: 8px;">
+                     <span class="meta-label" style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--color-text-main);">CÓDIGO</span>
+                     <span class="meta-value" id="meta-codigo" style="font-family: var(--font-sans); font-size: 14px; color: var(--color-primary-gold);"></span>
+                  </li>
+                  <li class="meta-item" style="display: flex; flex-direction: column; gap: 8px;">
+                     <span class="meta-label" style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--color-text-main);">DIMENSIONES</span>
+                     <span class="meta-value" id="meta-dimensiones" style="font-family: var(--font-sans); font-size: 14px; color: var(--color-primary-gold);"></span>
+                  </li>
+                  <li class="meta-item" style="display: flex; flex-direction: column; gap: 8px;">
+                     <span class="meta-label" style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--color-text-main);">ESTILO</span>
+                     <span class="meta-value" id="meta-estilo" style="font-family: var(--font-sans); font-size: 14px; color: var(--color-primary-gold);"></span>
+                  </li>
+                  <li class="meta-item" style="display: flex; flex-direction: column; gap: 8px;">
+                     <span class="meta-label" style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; color: var(--color-text-main);">CARACTERÍSTICAS</span>
+                     <span class="meta-value" id="meta-caracteristicas" style="font-family: var(--font-sans); font-size: 14px; color: var(--color-primary-gold);"></span>
+                  </li>
+               </ul>
+
+               <div id="mapa-container" style="margin-bottom: 32px; display: none;">
+                  <h4 style="font-family: var(--font-sans); font-size: 12px; color: var(--color-text-muted); margin-bottom: 8px; letter-spacing: 0.1em;">PLANO DE UBICACIÓN</h4>
+                  <img id="imagen-mapa" src="" alt="Plano de ubicación" style="width: 100%; border: 1px solid var(--color-border-marble);" />
+               </div>
+
+               <div class="narrative__story" id="texto-resena"></div>
+            </div>
+         </div>
+      </div>
+   </section>
+</Layout>

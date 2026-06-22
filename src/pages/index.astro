@@ -3,21 +3,82 @@ import Layout from './layouts/Layout.astro';
 ---
 
 <Layout title="Archivo San Teodoro | Inicio">
-   <section class="hero" id="inicio">
-      <div class="hero__overlay"></div>
-      <div class="hero__content">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+   <section class="hero" id="inicio" style="padding: 0; margin: 0; overflow: hidden; position: relative; min-height: 85vh; display: flex; align-items: center; justify-content: center;">
+
+      <div class="swiper hero-swiper" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide">
+               <img src="/img/fondo-cementerio.png" alt="Cementerio San Teodoro vista general" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+            </div>
+            <div class="swiper-slide">
+               <img src="/img/fondo.jpg" alt="Mausoleos del cementerio" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+            </div>
+            <div class="swiper-slide">
+               <img src="/img/estatua-2.jpg" alt="Esculturas en San Teodoro" style="width: 100%; height: 100%; object-fit: cover; object-position: center;" />
+            </div>
+         </div>
+      </div>
+
+      <div class="hero__overlay" style="z-index: 2; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+
+      <div class="hero__content" style="z-index: 3; position: relative; pointer-events: none;">
          <span class="hero__label">REPOSITORIO DE ARTE FUNERARIO</span>
          <h1 class="hero__title">Preservando el Arte de Piura</h1>
          <p class="hero__text">
-            Un museo a cielo abierto. Este archivo preserva el valor
-            histórico y arquitectónico de los nichos y esculturas del
-            Cementerio San Teodoro mediante digitalización por
-            fotogrametría.
+            Un museo a cielo abierto. Este archivo preserva el valor histórico y arquitectónico de los nichos y esculturas del Cementerio San Teodoro mediante digitalización por fotogrametría.
          </p>
-         <div class="hero__actions">
-            <a href="/catalogo" class="btn btn--primary">Ver Catálogo 3D</a>
-            <a href="/nosotros" class="btn btn--secondary">Sobre el Proyecto</a>
+         <div class="hero__actions" style="pointer-events: auto;">
+            <a href="/colecciones" class="btn btn--primary">EXPLORAR COLECCIONES</a>
+            <a href="/investigador" target="_blank" class="btn btn--secondary">CATÁLOGO DEL INVESTIGADOR</a>
          </div>
       </div>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
    </section>
+
+   <style>
+      .swiper-button-next, .swiper-button-prev {
+         color: var(--color-primary-gold) !important;
+         background-color: rgba(252, 249, 248, 0.85); /* Tono crema semi-transparente */
+         width: 56px !important;
+         height: 56px !important;
+         border-radius: 50%;
+         transition: all 0.3s ease;
+         z-index: 4; /* Por encima de todo */
+      }
+      
+      .swiper-button-next:hover, .swiper-button-prev:hover {
+         background-color: var(--color-background);
+         transform: scale(1.1);
+      }
+
+      /* Hacemos los íconos de flecha más finos y elegantes */
+      .swiper-button-next::after, .swiper-button-prev::after {
+         font-size: 22px !important;
+         font-weight: 600;
+      }
+   </style>
+
+   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" is:inline></script>
+   <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+         const swiper = new Swiper('.hero-swiper', {
+            effect: 'fade', // Efecto de desvanecimiento solemne y elegante
+            fadeEffect: { crossFade: true },
+            loop: true, // Carrusel infinito
+            autoplay: {
+               delay: 5000, // Cambia de foto cada 5 segundos
+               disableOnInteraction: false, // Sigue automático aunque el usuario use las flechas
+            },
+            navigation: {
+               nextEl: '.swiper-button-next',
+               prevEl: '.swiper-button-prev',
+            },
+            speed: 1500, // Duración de la transición para darle dramatismo
+         });
+      });
+   </script>
 </Layout>

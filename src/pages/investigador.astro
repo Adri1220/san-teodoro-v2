@@ -1,0 +1,67 @@
+---
+import Layout from './layouts/Layout.astro';
+
+// Mini base de datos de documentos para no ensuciar el HTML
+const documentos = [
+   {
+      autor: "Luján Briceño, A.", // Un pequeño easter egg para tu tesis
+      ano: "2026",
+      titulo: "Digitalización del Patrimonio Funerario en Piura: El Caso del Cementerio San Teodoro",
+      archivo: "#" // Aquí irá la ruta de tu PDF cuando lo tengas (ej. "/docs/tesis.pdf")
+   },
+   {
+      autor: "García, M.",
+      ano: "2018",
+      titulo: "Arquitectura Neoclásica en los Camposantos del Norte Peruano",
+      archivo: "#"
+   },
+   {
+      autor: "Ministerio de Cultura",
+      ano: "2010",
+      titulo: "Inventario de Monumentos Históricos y Obras de Arte de Piura",
+      archivo: "#"
+   }
+];
+---
+
+<Layout title="Archivo San Teodoro | Catálogo del Investigador">
+   <section class="researcher" style="padding-top: 140px; padding-bottom: 100px; background-color: var(--color-background); min-height: 80vh;">
+      <div style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+         
+         <div style="text-align: center; margin-bottom: 60px;">
+            <span style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: var(--color-primary-gold); text-transform: uppercase;">SECCIÓN ACADÉMICA</span>
+            <h1 style="font-family: var(--font-serif); font-size: 42px; font-weight: 500; color: var(--color-text-main); margin-top: 8px; margin-bottom: 24px;">Catálogo del Investigador</h1>
+            
+            <div style="background-color: #ffffff; border: 1px solid var(--color-border-marble); padding: 32px; text-align: left; border-left: 4px solid var(--color-primary-gold);">
+               <p style="font-family: var(--font-sans); font-size: 15px; color: var(--color-text-muted); line-height: 1.8; margin-bottom: 16px;">
+                  Nuestra labor cultural está guiada por un sentido ético de respeto hacia la persona difunta, su memoria y sus familiares, por lo que consideramos importante transparentar la información académica que fundamenta nuestras publicaciones.
+               </p>
+               <p style="font-family: var(--font-sans); font-size: 15px; color: var(--color-text-muted); line-height: 1.8;">
+                  Consulta las referencias bibliográficas, artículos e investigaciones relacionados a la historia del Cementerio San Teodoro y cada uno de los bienes que guardan las obras funerarias.
+               </p>
+            </div>
+         </div>
+
+         <div class="documents-list" style="display: flex; flex-direction: column; gap: 16px;">
+            <h3 style="font-family: var(--font-serif); font-size: 24px; color: var(--color-text-main); margin-bottom: 16px; border-bottom: 1px solid var(--color-border-marble); padding-bottom: 12px;">Documentos Descargables</h3>
+            
+            {documentos.map((doc) => (
+               <div style="display: flex; justify-content: space-between; align-items: center; padding: 20px; background-color: #ffffff; border: 1px solid var(--color-border-marble); transition: border-color 0.3s ease;" class="doc-item">
+                  <div style="padding-right: 24px;">
+                     <p style="font-family: var(--font-sans); font-size: 16px; color: var(--color-text-main); line-height: 1.5;">
+                        <strong>{doc.autor} ({doc.ano}).</strong> <em>{doc.titulo}</em>
+                     </p>
+                  </div>
+                  <div>
+                     <a href={doc.archivo} download class="btn btn--primary" style="padding: 10px 24px; white-space: nowrap; font-size: 13px; display: inline-flex; align-items: center; gap: 8px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        Descargar
+                     </a>
+                  </div>
+               </div>
+            ))}
+         </div>
+
+      </div>
+   </section>
+</Layout>

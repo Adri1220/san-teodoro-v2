@@ -58,20 +58,47 @@ document.addEventListener("DOMContentLoaded", () => {
       const renderizarCatalogo = () => {
          // 1. Filtrar por Botón Y por Texto
          const obrasFiltradas = obrasArray.filter(([slug, datos]) => {
-            // A. Filtro de botones
-            const coincideCategoria =
-               filtroActual === "todos" || datos.tipo === filtroActual;
+            // A. Filtro de botones inteligente (REQ COL-05)
+            let coincideCategoria = false;
 
-            // B. Filtro de buscador (Restringido solo a Metadatos Clave)
+            if (filtroActual === "todos") {
+               coincideCategoria = true;
+            } else if (filtroActual === "escultura") {
+               coincideCategoria = datos.tipo === "escultura";
+            } else if (filtroActual === "sigloxix") {
+               // Busca "XIX" o años que empiecen con "18" (ej. 1880)
+               coincideCategoria =
+                  (datos.anio || "").toUpperCase().includes("XIX") ||
+                  (datos.anio || "").includes("18");
+            } else if (filtroActual === "lapidas") {
+               // Busca la palabra lápida en la descripción o características
+               const textoFicha = (
+                  (datos.descripcion || "") +
+                  " " +
+                  (datos.caracteristicas || "")
+               ).toLowerCase();
+               coincideCategoria = textoFicha.includes("lápida");
+            } else if (filtroActual === "neoclasico") {
+               // Busca la palabra neoclásico en el estilo o la descripción
+               const textoEstilo = (
+                  (datos.estilo || "") +
+                  " " +
+                  (datos.descripcion || "")
+               ).toLowerCase();
+               coincideCategoria =
+                  textoEstilo.includes("neoclásico") ||
+                  textoEstilo.includes("neoclasico");
+            } else {
+               coincideCategoria = datos.tipo === filtroActual;
+            }
+
+            // B. Filtro de buscador (Restringido a Metadatos Clave)
             const termino = textoBusqueda.toLowerCase().trim();
-
-            // Extraemos solo los datos principales, ignorando la "descripcion"
             const titulo = (datos.titulo || "").toLowerCase();
             const autor = (datos.autor || "").toLowerCase();
             const material = (datos.material || "").toLowerCase();
-            const ubicacion = (datos.ubicacion || "").toLowerCase(); // Añadimos ubicación para los nichos
+            const ubicacion = (datos.ubicacion || "").toLowerCase();
 
-            // El algoritmo ya no busca en la descripción
             const coincideTexto =
                titulo.includes(termino) ||
                autor.includes(termino) ||
@@ -179,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
    }
 
    // ==========================================================================
-   // 4. INYECTOR DE PÁGINAS INTERNAS (obra.html y nicho.html)
+   // 4. INYECTOR DE PÁGINAS INTERNAS (Ficha Técnica ARCA)
    // ==========================================================================
    const urlParams = new URLSearchParams(window.location.search);
    const id = urlParams.get("id");
@@ -192,64 +219,116 @@ document.addEventListener("DOMContentLoaded", () => {
       if (id && typeof obras !== "undefined" && obras[id]) {
          const datos = obras[id];
 
+         // ------------------------------------------------------------------
+         // A. Si estamos en la página de OBRA (Escultura)
+         // ------------------------------------------------------------------
          if (document.querySelector(".artwork__title")) {
-            document.querySelector(".artwork__title").innerText = datos.titulo;
+            // Textos principales
+            document.querySelector(".artwork__title").innerText =
+               datos.titulo || "Sin título";
             document.querySelector(".artwork__category").innerText =
-               datos.categoria;
-            document.querySelector(".artwork__description p").innerHTML =
-               datos.descripcion;
+               datos.categoria || "";
+            document.querySelector("#texto-resena").innerHTML =
+               `<p>${datos.descripcion || "Información en proceso de investigación."}</p>`;
 
+            // Estado de conservación
             if (datos.conservacion) {
                document.querySelector(".artwork__status").innerHTML =
                   `<span class="status-dot"></span> ${datos.conservacion}`;
             }
 
-            const metaValues = document.querySelectorAll(".meta-value");
-            if (metaValues.length >= 3) {
-               metaValues[0].innerText = datos.anio;
-               metaValues[1].innerText = datos.material;
-               metaValues[2].innerText = datos.autor;
-            }
+            // Metadatos ARCA (Inyectados por IDs para mayor precisión)
+            document.getElementById("meta-anio").innerText = datos.anio || "-";
+            document.getElementById("meta-material").innerText =
+               datos.material || "-";
+            document.getElementById("meta-autor").innerText =
+               datos.autor || "-";
+            document.getElementById("meta-ubicacion").innerText =
+               datos.ubicacion || "-";
+            document.getElementById("meta-codigo").innerText =
+               datos.codigo || "-";
+            document.getElementById("meta-dimensiones").innerText =
+               datos.dimensiones || "-";
+            document.getElementById("meta-estilo").innerText =
+               datos.estilo || "-";
+            document.getElementById("meta-caracteristicas").innerText =
+               datos.caracteristicas || "-";
 
+            // Visor 3D
             if (datos.modelo3d) {
-               document.querySelector(".artwork__media").innerHTML = `
+               document.getElementById("visor3d-container").innerHTML = `
                   <iframe title="Modelo 3D de ${datos.titulo}" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking; gyroscope; accelerometer" style="width: 100%; aspect-ratio: 4/3; border: 1px solid var(--color-border-marble);" src="${datos.modelo3d}"></iframe>
-                  <span class="artwork__media-caption">MODELO FOTOGRAMÉTRICO INTERACTIVO · ARRASTRA PARA ROTAR</span>
+                  <span class="artwork__media-caption" style="display:block; margin-top:8px;">MODELO FOTOGRAMÉTRICO INTERACTIVO · ARRASTRA PARA ROTAR</span>
                `;
             }
+
+            // Imagen Estática (Plano de ubicación - REQ-12)
+            if (datos.imagen_plano) {
+               const mapaContainer = document.getElementById("mapa-container");
+               const imagenMapa = document.getElementById("imagen-mapa");
+               imagenMapa.src = datos.imagen_plano;
+               mapaContainer.style.display = "block"; // Hacemos visible la caja
+            }
          }
-
-         if (document.querySelector(".narrative__title")) {
+         // ------------------------------------------------------------------
+         // B. Si estamos en la página de NICHO (Tumba de Frida, etc.)
+         // ------------------------------------------------------------------
+         else if (document.querySelector(".narrative__title")) {
             document.querySelector(".narrative__title").innerText =
-               datos.titulo;
-            document.querySelector(".narrative__subtitle").innerText =
-               datos.subtitulo;
-            document.querySelector(".narrative__story").innerHTML =
-               `<p>${datos.descripcion}</p>`;
-
-            document.querySelector(".narrative__brief").innerHTML = `
-               <p><strong>Ubicación:</strong> ${datos.ubicacion}</p>
-               <p><strong>Material:</strong> ${datos.material}</p>
-            `;
+               datos.titulo || "Sin título";
+            document.querySelector("#narrative-category").innerText =
+               datos.categoria || "";
+            document.querySelector("#texto-resena").innerHTML =
+               `<p>${datos.descripcion || "Información en proceso de investigación."}</p>`;
 
             if (datos.imagen) {
-               document.querySelector(".narrative__media").innerHTML =
+               document.getElementById("narrative-img-container").innerHTML =
                   `<img src="${datos.imagen}" alt="Fotografía de ${datos.titulo}" class="narrative__img">`;
+            }
+            if (datos.conservacion) {
+               document.querySelector(".artwork__status").innerHTML =
+                  `<span class="status-dot"></span> ${datos.conservacion}`;
+            }
+
+            // Metadatos ARCA
+            document.getElementById("meta-anio").innerText = datos.anio || "-";
+            document.getElementById("meta-material").innerText =
+               datos.material || "-";
+            document.getElementById("meta-autor").innerText =
+               datos.autor || "-";
+            document.getElementById("meta-ubicacion").innerText =
+               datos.ubicacion || "-";
+            document.getElementById("meta-codigo").innerText =
+               datos.codigo || "-";
+            document.getElementById("meta-dimensiones").innerText =
+               datos.dimensiones || "-";
+            document.getElementById("meta-estilo").innerText =
+               datos.estilo || "-";
+            document.getElementById("meta-caracteristicas").innerText =
+               datos.caracteristicas || "-";
+
+            // Imagen de Ubicación (Plano de ubicación)
+            if (datos.imagen_plano) {
+               const mapaContainer = document.getElementById("mapa-container");
+               const imagenMapa = document.getElementById("imagen-mapa");
+               imagenMapa.src = datos.imagen_plano;
+               mapaContainer.style.display = "block";
             }
          }
 
+         // Cambiamos el título de la pestaña del navegador
          document.title = `${datos.titulo} - Archivo San Teodoro`;
       } else {
+         // Pantalla de error si el ID no existe
          pageContainer.innerHTML = `
             <div style="text-align: center; padding: 100px 20px; display: flex; flex-direction: column; align-items: center; gap: 24px;">
                <h1 style="font-family: var(--font-serif); font-size: 48px; color: var(--color-text-main);">Registro no encontrado</h1>
                <p style="font-family: var(--font-sans); font-size: 16px; color: var(--color-text-muted); max-width: 500px; line-height: 1.6;">
-                  Lo sentimos, la obra o nicho que intentas visualizar no existe en la base de datos actual o el enlace fue modificado.
+                  Lo sentimos, la obra que intentas visualizar no existe en la base de datos o el enlace fue modificado.
                </p>
-               <a href="index.html#catalogo" class="btn btn--primary" style="margin-top: 16px;">Volver al Catálogo 3D</a>
+               <a href="/catalogo" class="btn btn--primary" style="margin-top: 16px;">Volver al Catálogo 3D</a>
             </div>
          `;
-         document.title = "No encontrado - Archivo San Teodoro";
       }
    }
 });
