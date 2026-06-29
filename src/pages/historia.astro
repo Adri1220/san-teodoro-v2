@@ -1,0 +1,146 @@
+---
+import Layout from './layouts/Layout.astro';
+---
+
+<Layout title="Archivo San Teodoro | Historia">
+   <div style="padding-top: 140px; padding-bottom: 80px; background-color: var(--color-background);">
+      
+      <section class="history-intro" style="max-width: 1000px; margin: 0 auto 80px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+         <div class="history-image">
+            <img src="/img/fondo-cementerio.png" alt="Cementerio San Teodoro antiguo" style="width: 100%; border: 1px solid var(--color-border-marble); filter: grayscale(50%) sepia(20%);" />
+         </div>
+         <div class="history-text">
+            <span style="font-family: var(--font-sans); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; color: var(--color-primary-gold); text-transform: uppercase;">NUESTRO LEGADO</span>
+            <h1 style="font-family: var(--font-serif); font-size: 36px; font-weight: 500; color: var(--color-text-main); margin-top: 8px; margin-bottom: 24px;">Historia del San Teodoro</h1>
+            <p style="font-family: var(--font-sans); font-size: 15px; color: var(--color-text-muted); line-height: 1.8; margin-bottom: 16px;">
+               Inaugurado en 1838, el Cementerio General San Teodoro es el camposanto en uso más antiguo de Piura. Sus cuarteles y mausoleos son testigos silenciosos de las epidemias, guerras y desarrollos sociales que forjaron la identidad del norte peruano.
+            </p>
+            <p style="font-family: var(--font-sans); font-size: 15px; color: var(--color-text-muted); line-height: 1.8; margin-bottom: 24px;">
+               Recorrer sus pasillos es leer un libro de historia tallado en mármol y piedra caliza.
+            </p>
+            <div style="text-align: right;">
+               <a href="#linea-tiempo" style="font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--color-primary-gold); text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--color-primary-gold); padding-bottom: 4px;"># Explora la línea de tiempo</a>
+            </div>
+         </div>
+      </section>
+
+      <section id="linea-tiempo" style="background-color: #f6f3f2; padding: 80px 20px; border-top: 1px solid var(--color-border-marble);">
+         <div style="max-width: 1200px; margin: 0 auto;">
+            
+            <h2 style="font-family: var(--font-serif); font-size: 32px; font-weight: 500; color: var(--color-text-main); text-align: center; margin-bottom: 64px;">Cementerio San Teodoro en el Tiempo</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 60px;">
+               <div style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px;">
+                  <div class="image-wrapper" style="overflow: hidden; cursor: zoom-in; margin-bottom: 16px; border: 1px solid #eee;">
+                     <img src="/img/fondo.jpg" class="historia-img" alt="Plano 1838" style="width: 100%; height: 180px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+                  </div>
+                  <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--color-primary-gold); margin-bottom: 8px;">1838</h3>
+                  <p style="font-family: var(--font-sans); font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">Fundación oficial del cementerio en las afueras de la ciudad por mandato de la Beneficencia.</p>
+               </div>
+               
+               <div style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px;">
+                  <div class="image-wrapper" style="overflow: hidden; cursor: zoom-in; margin-bottom: 16px; border: 1px solid #eee;">
+                     <img src="/img/estatua-2.jpg" class="historia-img" alt="Plano 1860" style="width: 100%; height: 180px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+                  </div>
+                  <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--color-primary-gold); margin-bottom: 8px;">1860</h3>
+                  <p style="font-family: var(--font-sans); font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">Expansión de los primeros cuarteles ante el crecimiento demográfico y la epidemia de fiebre amarilla.</p>
+               </div>
+
+               <div style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px;">
+                  <div class="image-wrapper" style="overflow: hidden; cursor: zoom-in; margin-bottom: 16px; border: 1px solid #eee;">
+                     <img src="/img/fondo-cementerio.png" class="historia-img" alt="Plano 1912" style="width: 100%; height: 180px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+                  </div>
+                  <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--color-primary-gold); margin-bottom: 8px;">1912</h3>
+                  <p style="font-family: var(--font-sans); font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">Construcción de mausoleos monumentales neoclásicos impulsada por las familias agroexportadoras.</p>
+               </div>
+
+               <div style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px;">
+                  <div class="image-wrapper" style="overflow: hidden; cursor: zoom-in; margin-bottom: 16px; border: 1px solid #eee;">
+                     <img src="/img/estatua-3.jpg" class="historia-img" alt="Plano 2026" style="width: 100%; height: 180px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+                  </div>
+                  <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--color-primary-gold); margin-bottom: 8px;">2026</h3>
+                  <p style="font-family: var(--font-sans); font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">Inicio del proyecto de digitalización y creación del repositorio fotogramétrico para preservar su valor.</p>
+               </div>
+            </div>
+
+            <div style="position: relative; max-width: 1000px; margin: 0 auto; padding-top: 40px;">
+               <div style="position: absolute; top: 46px; left: 10%; right: 10%; height: 2px; background-color: var(--color-border-marble); z-index: 1;"></div>
+               
+               <div style="display: flex; justify-content: space-around; position: relative; z-index: 2;">
+                  <div style="text-align: center;">
+                     <div style="width: 14px; height: 14px; background-color: var(--color-primary-gold); border-radius: 50%; margin: 0 auto 12px auto; outline: 4px solid #f6f3f2;"></div>
+                     <span style="font-family: var(--font-sans); font-weight: 600; color: var(--color-text-main); font-size: 14px;">1838</span>
+                  </div>
+                  <div style="text-align: center;">
+                     <div style="width: 14px; height: 14px; background-color: var(--color-primary-gold); border-radius: 50%; margin: 0 auto 12px auto; outline: 4px solid #f6f3f2;"></div>
+                     <span style="font-family: var(--font-sans); font-weight: 600; color: var(--color-text-main); font-size: 14px;">1860</span>
+                  </div>
+                  <div style="text-align: center;">
+                     <div style="width: 14px; height: 14px; background-color: var(--color-primary-gold); border-radius: 50%; margin: 0 auto 12px auto; outline: 4px solid #f6f3f2;"></div>
+                     <span style="font-family: var(--font-sans); font-weight: 600; color: var(--color-text-main); font-size: 14px;">1912</span>
+                  </div>
+                  <div style="text-align: center;">
+                     <div style="width: 14px; height: 14px; background-color: var(--color-primary-gold); border-radius: 50%; margin: 0 auto 12px auto; outline: 4px solid #f6f3f2;"></div>
+                     <span style="font-family: var(--font-sans); font-weight: 600; color: var(--color-text-main); font-size: 14px;">2026</span>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+      </section>
+
+   </div>
+
+   <div id="lightbox" style="position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(28,27,27,0.95); display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+      <span id="lightbox-close" style="position: absolute; top: 30px; right: 40px; color: #ffffff; font-size: 40px; font-family: sans-serif; cursor: pointer;">&times;</span>
+      <img id="lightbox-img" src="" alt="Imagen ampliada" style="max-width: 90%; max-height: 85vh; border: 4px solid #ffffff; box-shadow: 0 0 20px rgba(0,0,0,0.5);" />
+   </div>
+
+   <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+         const lightbox = document.getElementById('lightbox');
+         const lightboxImg = document.getElementById('lightbox-img');
+         const closeBtn = document.getElementById('lightbox-close');
+         const images = document.querySelectorAll('.historia-img');
+
+         // Abrir imagen
+         images.forEach(img => {
+            img.addEventListener('click', () => {
+               lightboxImg.src = img.src;
+               lightbox.style.display = 'flex';
+               // Pequeño delay para que la transición CSS funcione al mostrar
+               setTimeout(() => lightbox.style.opacity = '1', 10); 
+            });
+         });
+
+         // Cerrar imagen
+         const closeLightbox = () => {
+            lightbox.style.opacity = '0';
+            setTimeout(() => lightbox.style.display = 'none', 300);
+         };
+
+         closeBtn.addEventListener('click', closeLightbox);
+         lightbox.addEventListener('click', (e) => {
+            // Si hacen clic en el fondo negro, se cierra
+            if(e.target === lightbox) closeLightbox();
+         });
+         
+         // Accesibilidad: Cerrar con tecla Escape
+         document.addEventListener('keydown', (e) => {
+            if(e.key === 'Escape' && lightbox.style.display === 'flex') closeLightbox();
+         });
+      });
+   </script>
+</Layout>
+
+<style>
+   /* Responsive para la grilla de historia en celulares */
+   @media (max-width: 992px) {
+      .history-intro { grid-template-columns: 1fr !important; text-align: center; }
+      #linea-tiempo > div > div:first-of-type { grid-template-columns: 1fr 1fr !important; }
+   }
+   @media (max-width: 600px) {
+      #linea-tiempo > div > div:first-of-type { grid-template-columns: 1fr !important; }
+      #linea-tiempo > div > div:last-of-type { display: none !important; } /* Ocultar timeline horizontal en móviles muy pequeños */
+   }
+</style>
