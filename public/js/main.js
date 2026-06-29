@@ -1,5 +1,5 @@
 // Agregamos 'async' para poder usar promesas al consumir nuestra base de datos
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("astro:page-load", async () => {
    // ==========================================================================
    // 1. HEADER MÁGICO Y SCROLL SPY
    // ==========================================================================

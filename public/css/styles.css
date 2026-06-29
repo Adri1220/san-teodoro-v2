@@ -545,23 +545,36 @@ body {
 /* --- LA CUADRÍCULA (CSS Grid) --- */
 .catalog__grid {
    display: grid;
-   /* Divide el espacio en 3 columnas exactamente iguales (1fr cada una) */
    grid-template-columns: repeat(3, 1fr);
-   gap: 32px; /* Gutter exacto de tu DESIGN.md */
-   max-width: 1000px; /* Ancho máximo permitido para el contenedor */
+   gap: 32px;
+   max-width: 1000px;
    width: 100%;
+   margin: 0 auto; /* ¡ESTA ES LA LÍNEA MÁGICA QUE CENTRA EL BLOQUE! */
 }
 
 /* --- LA TARJETA --- */
 .card {
-   background-color: #f6f3f2; /* Un tono sutil para separar la tarjeta del fondo */
-   border: 1px solid var(--color-border-marble); /* Línea fina Gris Mármol */
-   border-radius: 0; /* Esquinas completamente rectas (0px) */
-
-   /* FLEXBOX: Organiza el contenido interno en una columna vertical */
+   background-color: #f6f3f2;
+   border: 1px solid var(--color-border-marble);
+   border-radius: 0;
    display: flex;
    flex-direction: column;
-   transition: border-color 0.3s ease; /* Transición suave para el hover */
+   transition: border-color 0.3s ease;
+
+   /* NUEVA ANIMACIÓN DE ENTRADA */
+   animation: fadeUp 0.5s ease-out forwards;
+}
+
+/* DECLARAMOS EL EFECTO FADE-UP */
+@keyframes fadeUp {
+   from {
+      opacity: 0;
+      transform: translateY(20px);
+   }
+   to {
+      opacity: 1;
+      transform: translateY(0);
+   }
 }
 
 /* Efecto interactivo del manual de estilos */

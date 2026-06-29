@@ -1,6 +1,4 @@
 ---
-// La zona de "Frontmatter" de Astro. Aquí va el JS que se ejecuta en el servidor.
-// Recibimos el título de la página como propiedad para que cada pestaña cambie su nombre.
 const { title } = Astro.props;
 ---
 
@@ -26,7 +24,6 @@ const { title } = Astro.props;
                <li class="nav__item"><a href="/" class="nav__link">Inicio</a></li>
                <li class="nav__item"><a href="/historia" class="nav__link">Historia</a></li>
                <li class="nav__item"><a href="/colecciones" class="nav__link">Colecciones</a></li>
-               
                <li class="nav__item"><a href="/investigador" target="_blank" class="nav__link">Catálogo Investigador</a></li>
                <li class="nav__item"><a href="/nosotros" target="_blank" class="nav__link">Sobre Nosotros</a></li>
             </ul>
@@ -38,7 +35,7 @@ const { title } = Astro.props;
          <slot />
       </main>
 
-<footer class="footer" style="border-top: 1px solid var(--color-border-marble); padding: 40px 0; background-color: var(--color-background);">
+      <footer class="footer" style="border-top: 1px solid var(--color-border-marble); padding: 40px 0; background-color: var(--color-background);">
          <div class="footer__container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
             <div class="footer__top" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; margin-bottom: 40px;">
                <div class="footer__brand" style="max-width: 400px;">
@@ -58,7 +55,6 @@ const { title } = Astro.props;
                         <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                      </a>
                   </div>
-
                </div>
                <div class="footer__links-wrapper" style="display: flex; gap: 48px;">
                   <ul class="footer__list" style="list-style: none; padding: 0;">
@@ -81,5 +77,8 @@ const { title } = Astro.props;
          </div>
       </footer>
 
+      <script src="/js/ui.js" is:inline></script>
+      <script src="/js/catalogo.js" is:inline></script>
+      <script src="/js/ficha.js" is:inline></script>
    </body>
 </html>
