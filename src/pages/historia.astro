@@ -30,33 +30,33 @@ import Layout from './layouts/Layout.astro';
             <h2 style="font-family: var(--font-serif); font-size: 32px; font-weight: 500; color: var(--color-text-main); text-align: center; margin-bottom: 64px;">Cementerio San Teodoro en el Tiempo</h2>
 
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 60px;">
-               <div style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px;">
-                  <div class="image-wrapper" style="overflow: hidden; cursor: zoom-in; margin-bottom: 16px; border: 1px solid #eee;">
-                     <img src="/img/fondo.jpg" class="historia-img" alt="Plano 1838" style="width: 100%; height: 180px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+              <div class="timeline-card" data-img="/img/fondo.jpg" data-year="1838" data-desc="Fundación oficial del cementerio en las afueras de la ciudad por mandato de la Beneficencia." style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                  <div class="image-wrapper" style="overflow: hidden; margin-bottom: 16px; border: 1px solid #eee;">
+                     <img src="/img/fondo.jpg" alt="Plano 1838" style="width: 100%; height: 180px; object-fit: cover;" />
                   </div>
                   <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--color-primary-gold); margin-bottom: 8px;">1838</h3>
                   <p style="font-family: var(--font-sans); font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">Fundación oficial del cementerio en las afueras de la ciudad por mandato de la Beneficencia.</p>
                </div>
                
-               <div style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px;">
-                  <div class="image-wrapper" style="overflow: hidden; cursor: zoom-in; margin-bottom: 16px; border: 1px solid #eee;">
-                     <img src="/img/estatua-2.jpg" class="historia-img" alt="Plano 1860" style="width: 100%; height: 180px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+               <div class="timeline-card" data-img="/img/estatua-2.jpg" data-year="1860" data-desc="Expansión de los primeros cuarteles ante el crecimiento demográfico y la epidemia de fiebre amarilla." style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                  <div class="image-wrapper" style="overflow: hidden; margin-bottom: 16px; border: 1px solid #eee;">
+                     <img src="/img/estatua-2.jpg" alt="Plano 1860" style="width: 100%; height: 180px; object-fit: cover;" />
                   </div>
                   <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--color-primary-gold); margin-bottom: 8px;">1860</h3>
                   <p style="font-family: var(--font-sans); font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">Expansión de los primeros cuarteles ante el crecimiento demográfico y la epidemia de fiebre amarilla.</p>
                </div>
 
-               <div style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px;">
-                  <div class="image-wrapper" style="overflow: hidden; cursor: zoom-in; margin-bottom: 16px; border: 1px solid #eee;">
-                     <img src="/img/fondo-cementerio.png" class="historia-img" alt="Plano 1912" style="width: 100%; height: 180px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+               <div class="timeline-card" data-img="/img/fondo-cementerio.png" data-year="1912" data-desc="Construcción de mausoleos monumentales neoclásicos impulsada por las familias agroexportadoras." style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                  <div class="image-wrapper" style="overflow: hidden; margin-bottom: 16px; border: 1px solid #eee;">
+                     <img src="/img/fondo-cementerio.png" alt="Plano 1912" style="width: 100%; height: 180px; object-fit: cover;" />
                   </div>
                   <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--color-primary-gold); margin-bottom: 8px;">1912</h3>
                   <p style="font-family: var(--font-sans); font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">Construcción de mausoleos monumentales neoclásicos impulsada por las familias agroexportadoras.</p>
                </div>
 
-               <div style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px;">
-                  <div class="image-wrapper" style="overflow: hidden; cursor: zoom-in; margin-bottom: 16px; border: 1px solid #eee;">
-                     <img src="/img/estatua-3.jpg" class="historia-img" alt="Plano 2026" style="width: 100%; height: 180px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+               <div class="timeline-card" data-img="/img/estatua-3.jpg" data-year="2026" data-desc="Inicio del proyecto de digitalización y creación del repositorio fotogramétrico para preservar su valor." style="background-color: var(--color-background); border: 1px solid var(--color-border-marble); padding: 16px; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                  <div class="image-wrapper" style="overflow: hidden; margin-bottom: 16px; border: 1px solid #eee;">
+                     <img src="/img/estatua-3.jpg" alt="Plano 2026" style="width: 100%; height: 180px; object-fit: cover;" />
                   </div>
                   <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--color-primary-gold); margin-bottom: 8px;">2026</h3>
                   <p style="font-family: var(--font-sans); font-size: 13px; color: var(--color-text-muted); line-height: 1.5;">Inicio del proyecto de digitalización y creación del repositorio fotogramétrico para preservar su valor.</p>
@@ -91,41 +91,85 @@ import Layout from './layouts/Layout.astro';
 
    </div>
 
-   <div id="lightbox" style="position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(28,27,27,0.95); display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
-      <span id="lightbox-close" style="position: absolute; top: 30px; right: 40px; color: #ffffff; font-size: 40px; font-family: sans-serif; cursor: pointer;">&times;</span>
-      <img id="lightbox-img" src="" alt="Imagen ampliada" style="max-width: 90%; max-height: 85vh; border: 4px solid #ffffff; box-shadow: 0 0 20px rgba(0,0,0,0.5);" />
+   <div id="lightbox" style="position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(13, 12, 12, 0.9); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; padding: 40px 20px; box-sizing: border-box; overflow-y: auto;">
+      
+      <div id="lightbox-card" style="background-color: var(--color-background); max-width: 900px; width: 100%; border: 1px solid var(--color-border-marble); position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.5); transform: scale(0.95); transition: transform 0.3s ease; margin: auto;">
+         
+         <button id="lightbox-close" style="position: absolute; top: 24px; right: 24px; background-color: rgba(255, 255, 255, 0.95); border: 1px solid var(--color-border-marble); color: var(--color-text-main); width: 44px; height: 44px; border-radius: 50%; font-size: 26px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='#ffffff'; this.style.transform='scale(1.1)'" onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.95)'; this.style.transform='scale(1)'">&times;</button>
+         
+         <img id="lightbox-img" src="" alt="Acontecimiento Histórico" style="width: 100%; height: 480px; object-fit: cover; display: block;" />
+         
+         <div id="lightbox-content-box" style="padding: 48px 56px; background-color: var(--color-background);">
+            <h3 id="lightbox-title" style="font-family: var(--font-serif); font-size: 38px; font-weight: 500; color: var(--color-text-main); margin-top: 0; margin-bottom: 24px; letter-spacing: -0.01em;"></h3>
+            <p id="lightbox-desc" style="font-family: var(--font-sans); font-size: 16px; color: var(--color-text-muted); line-height: 1.85; margin: 0; letter-spacing: 0.01em;"></p>
+         </div>
+
+      </div>
    </div>
 
    <script is:inline>
       document.addEventListener('DOMContentLoaded', () => {
          const lightbox = document.getElementById('lightbox');
+         const lightboxCard = document.getElementById('lightbox-card');
          const lightboxImg = document.getElementById('lightbox-img');
+         const lightboxTitle = document.getElementById('lightbox-title');
+         const lightboxDesc = document.getElementById('lightbox-desc');
          const closeBtn = document.getElementById('lightbox-close');
-         const images = document.querySelectorAll('.historia-img');
+         const timelineCards = document.querySelectorAll('.timeline-card');
 
-         // Abrir imagen
-         images.forEach(img => {
-            img.addEventListener('click', () => {
-               lightboxImg.src = img.src;
-               lightbox.style.display = 'flex';
-               // Pequeño delay para que la transición CSS funcione al mostrar
-               setTimeout(() => lightbox.style.opacity = '1', 10); 
+         // Función para abrir el gran cuadro flotante
+         const openLightbox = (card) => {
+            lightboxImg.src = card.getAttribute('data-img');
+            lightboxTitle.textContent = card.getAttribute('data-year');
+            lightboxDesc.textContent = card.getAttribute('data-desc');
+            
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Bloquea scroll de fondo
+            
+            setTimeout(() => {
+               lightbox.style.opacity = '1';
+               lightboxCard.style.transform = 'scale(1)';
+            }, 10);
+         };
+
+         // Configurar disparadores en las tarjetas
+         if (timelineCards.length > 0) {
+            timelineCards.forEach(card => {
+               card.addEventListener('click', () => openLightbox(card));
             });
-         });
+         } else {
+            // Soporte por si aún conservas las imágenes con la clase antigua de tu código base
+            const oldImages = document.querySelectorAll('.historia-img');
+            oldImages.forEach(img => {
+               img.addEventListener('click', () => {
+                  const parentCard = img.closest('div');
+                  lightboxImg.src = img.src;
+                  lightboxTitle.textContent = parentCard.querySelector('h3')?.textContent || '';
+                  lightboxDesc.textContent = parentCard.querySelector('p')?.textContent || '';
+                  lightbox.style.display = 'flex';
+                  document.body.style.overflow = 'hidden';
+                  setTimeout(() => {
+                     lightbox.style.opacity = '1';
+                     lightboxCard.style.transform = 'scale(1)';
+                  }, 10);
+               });
+            });
+         }
 
-         // Cerrar imagen
+         // Función para cerrar
          const closeLightbox = () => {
             lightbox.style.opacity = '0';
-            setTimeout(() => lightbox.style.display = 'none', 300);
+            lightboxCard.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+               lightbox.style.display = 'none';
+               document.body.style.overflow = ''; // Devuelve el scroll
+            }, 300);
          };
 
          closeBtn.addEventListener('click', closeLightbox);
          lightbox.addEventListener('click', (e) => {
-            // Si hacen clic en el fondo negro, se cierra
             if(e.target === lightbox) closeLightbox();
          });
-         
-         // Accesibilidad: Cerrar con tecla Escape
          document.addEventListener('keydown', (e) => {
             if(e.key === 'Escape' && lightbox.style.display === 'flex') closeLightbox();
          });
@@ -134,13 +178,26 @@ import Layout from './layouts/Layout.astro';
 </Layout>
 
 <style>
-   /* Responsive para la grilla de historia en celulares */
+   /* Adaptación responsiva para el nuevo Gran Modal */
    @media (max-width: 992px) {
       .history-intro { grid-template-columns: 1fr !important; text-align: center; }
       #linea-tiempo > div > div:first-of-type { grid-template-columns: 1fr 1fr !important; }
+      
+      #lightbox-img { height: 360px !important; }
+      #lightbox-content-box { padding: 36px 40px !important; }
+      #lightbox-title { font-size: 32px !important; }
    }
+   
    @media (max-width: 600px) {
       #linea-tiempo > div > div:first-of-type { grid-template-columns: 1fr !important; }
-      #linea-tiempo > div > div:last-of-type { display: none !important; } /* Ocultar timeline horizontal en móviles muy pequeños */
+      #linea-tiempo > div > div:last-of-type { display: none !important; }
+      
+      /* Optimización crítica para celulares */
+      #lightbox { padding: 10px !important; }
+      #lightbox-img { height: 240px !important; }
+      #lightbox-content-box { padding: 28px 20px !important; }
+      #lightbox-title { font-size: 26px !important; }
+      #lightbox-desc { font-size: 14px !important; line-height: 1.75 !important; }
+      #lightbox-close { top: 16px !important; right: 16px !important; width: 38px !important; height: 38px !important; font-size: 22px !important; }
    }
 </style>

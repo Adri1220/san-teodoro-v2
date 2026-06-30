@@ -71,12 +71,14 @@ import Layout from './layouts/Layout.astro';
             <div class="catalog__filters" style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 40px;">
                <button class="filter-btn filter-btn--active" data-filter="todos">Todos</button>
                <button class="filter-btn" data-filter="escultura">Esculturas</button>
+               <button class="filter-btn" data-filter="nicho">Nichos</button>
                <button class="filter-btn" data-filter="sigloxix">S. XIX</button>
                <button class="filter-btn" data-filter="lapidas">Lápidas</button>
                <button class="filter-btn" data-filter="neoclasico">Neoclásico</button>
             </div>
 
-            <div class="catalog__grid" style="text-align: left;"></div>
+            <!-- Sin style="text-align:left" — el centrado lo controla .catalog__grid en styles.css -->
+            <div class="catalog__grid"></div>
          </div>
 
          <div style="text-align: center; margin-top: 80px; padding: 40px; background-color: #f6f3f2; border: 1px solid var(--color-border-marble);">
